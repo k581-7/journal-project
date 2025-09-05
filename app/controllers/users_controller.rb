@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -6,6 +6,7 @@ class UserController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
   end
 
   def new
@@ -38,6 +39,10 @@ class UserController < ApplicationController
     redirect_to users_path
   end
 
+  # def sign_in_count
+  #   @user = User.find(params[:id])
+  #   @session.destroy
+  # end
   private
 
   def set_user
@@ -45,6 +50,6 @@ class UserController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :email)
   end
 end

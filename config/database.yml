@@ -5,18 +5,8 @@ default: &default
 development:
   <<: *default
   database: journal_app
-  username: <%= ENV['DATABASE_USERNAME'] || 'postgres' %>
-  password: <%= ENV['DATABASE_PASSWORD'] || 'N3wj34ns' %>
-  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
-  port: <%= ENV['DATABASE_PORT'] || 5432 %>
 test:
-  adapter: postgresql
-  encoding: unicode
   database: test_app_db_test
-  username: <%= ENV['DATABASE_USERNAME'] || 'postgres' %>
-  password: <%= ENV['DATABASE_PASSWORD'] || 'N3wj34ns' %>
-  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
-  port: <%= ENV['DATABASE_PORT'] || 5432 %>
 production:
   primary:
     <<: *default
