@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th>Username</th>
-      <th>Category</th>
+      <th>Tasks</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -11,7 +11,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.username %></td>
-        <td><%= user.category %></td>
+        <td><%= link_to 'Create a Task', new_category_path %></td>
         <td>
           <%= link_to 'Update an Account', edit_user_registration_path %>
           <% if user_signed_in? %>

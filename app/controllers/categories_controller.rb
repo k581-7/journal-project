@@ -1,4 +1,4 @@
-class CategoryController < ApplicationController
+class CategoriesController < ApplicationController
   def index
     @categories = Category.all
   end
@@ -16,7 +16,7 @@ class CategoryController < ApplicationController
 
     if @category.save
       puts "saved"
-      redirect_to dashboard_path
+      redirect_to categories_path
     else
       render :new
     end
@@ -35,14 +35,14 @@ end
      end
   end
 
-  def delete
+  def destroy
     @category = Category.find(params[:id])
     @category.destroy
-      redirect_to category_path
+      redirect_to categories_path
   end
 
   private 
   def category_params
-    params.require(:category).permit(:name, :body)
+    params.require(:category).permit(:name)
     end
 end

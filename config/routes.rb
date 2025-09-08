@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   # delete "/users/:id" => "users#destroy", as: "delete_user"
   authenticated :user do
     root "dashboard#index", as: :authenticated_root
+    resources :categories
   end
   
   unauthenticated do
