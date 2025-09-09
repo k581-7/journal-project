@@ -10,3 +10,11 @@
   <%= form.submit "Create Category" %>
 </p>
 <% end %>
+
+  <tbody>
+      <tr>
+        <%= render "categories", categories: @categories %>
+      </tr>
+  </tbody>
+</table>
+ 

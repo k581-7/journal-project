@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get "tasks/index"
+  get "tasks/show"
+  get "tasks/new"
+  get "tasks/create"
+  get "tasks/edit"
+  get "tasks/update"
+  get "tasks/destroy"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # devise_for :users, controllers: {
   #   sessions: "users/sessions"
@@ -17,9 +24,16 @@ Rails.application.routes.draw do
   # delete "/users/:id" => "users#destroy", as: "delete_user"
   authenticated :user do
     root "dashboard#index", as: :authenticated_root
-    resources :categories
+    resources :categories do
+      resources :tasks, except: [:index]
   end
   
+  resources :tasks, only: [:index] do
+    collection do
+      get :today
+    end
+  end
+end
   unauthenticated do
     devise_scope :user do
       root "devise/sessions#new", as: :unauthenticated_root
