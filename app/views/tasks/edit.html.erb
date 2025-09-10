@@ -1,2 +1,27 @@
-<h1>Tasks#edit</h1>
-<p>Find me in app/views/tasks/edit.html.erb</p>
+<h1>Edit Task</h1>
+
+<%= form_with(model: [@category, @task], local: true) do |form| %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </p>
+
+  <p>
+    <%= form.label :due_date %><br>
+    <%= form.date_field :due_date %>
+  </p>
+
+  <p>
+    <%= form.label :status %><br>
+    <%= form.check_box :status %>
+  </p>
+
+  <p>
+    <%= form.submit "Update Task" %>
+  </p>
+<% end %>

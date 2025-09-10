@@ -5,6 +5,8 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    @tasks = @category.tasks
+    @task = Task.new
   end
 
   def new
@@ -13,11 +15,11 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(category_params)
+    @category = current_user.categories.new(category_params)
+    @categories = Category.all 
 
     if @category.save
-      puts "saved"
-      redirect_to categories_path
+      redirect_to @category
     else
       render :new
     end

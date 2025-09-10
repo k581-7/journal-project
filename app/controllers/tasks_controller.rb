@@ -15,17 +15,21 @@ class TasksController < ApplicationController
   end
 
   def new
+    @category = current_user.categories.find(params[:category_id])
     @task = @category.tasks.build
   end
 
   def create
+    @category = current_user.categories.find(params[:category_id])
     @task = @category.tasks.build(task_params)
     @task.user = current_user
+    # @tasks = @category.tasks
 
     if @task.save
-      redirect_to [ @category, @task ]
+      redirect_to @category
     else
-      render :new
+      @tasks = @category.tasks
+      render "categories/show"
     end
   end
 

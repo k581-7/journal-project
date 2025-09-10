@@ -11,3 +11,38 @@
       </tr>
   </tbody>
 </table>
+
+<h1>New Task</h1>
+<%= form_with model: [@category, @task], local: true do |form| %>
+
+<p>
+  <%= form.label :title %> <br/>
+  <%= form.text_field :title %>
+</p>
+<p>
+  <%= form.label :description %> <br/>
+  <%= form.text_field :description %>
+</p>
+<p>
+  <%= form.label :due_date %><br/>
+  <%= form.date_field :due_date %>
+</p>
+
+<p>
+  <%= form.submit "Submit" %>
+</p>
+<% end %>
+
+  <tbody>
+      <tr>
+        <% @tasks.each do |task| %>
+        <tr>
+        <td><%= task.title %></td>
+        <td><%= link_to 'Show', category_task_path(@category, task) %></td>
+        <td><%= link_to 'Edit', edit_category_task_path(@category, task) %></td>
+        <td><%= button_to 'Delete', category_task_path(@category, task), method: :delete %> </td>
+        </tr>
+        <% end %>
+      </tr>
+  </tbody>
+</table>

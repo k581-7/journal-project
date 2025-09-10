@@ -1,2 +1,14 @@
-<h1>Tasks#index</h1>
-<p>Find me in app/views/tasks/index.html.erb</p>
+<table>
+  <thead>
+    <tr>
+      <th>Tasks</th>
+      <th><%= link_to 'Create a Task', new_category_task_path %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <%= render "tasks", tasks: @tasks %>
+      </tr>
+  </tbody>
+</table>
