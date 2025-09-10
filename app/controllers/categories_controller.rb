@@ -33,7 +33,7 @@ end
       redirect_to @category
     else
       render :edit
-     end
+    end
   end
 
   def destroy
@@ -42,7 +42,7 @@ end
       redirect_to categories_path
   end
 
-  private 
+  private
   def category_params
     params.require(:category).permit(:name)
     end

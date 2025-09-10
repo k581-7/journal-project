@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_category, except: [:index, :today]
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, except: [ :index, :today ]
+  before_action :set_task, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @tasks = current_user.tasks
@@ -23,7 +23,7 @@ class TasksController < ApplicationController
     @task.user = current_user
 
     if @task.save
-      redirect_to [@category, @task]
+      redirect_to [ @category, @task ]
     else
       render :new
     end
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to [@category, @task]
+      redirect_to [ @category, @task ]
     else
       render :edit
     end

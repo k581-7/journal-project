@@ -6,4 +6,3 @@ class UserTest < ActiveSupport::TestCase
      assert !user.valid?, "User should have a username"
    end
 end
-

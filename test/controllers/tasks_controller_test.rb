@@ -5,7 +5,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:one)
-    @category = categories(:one) 
+    @category = categories(:one)
     @task = tasks(:one)
     sign_in @user
   end
@@ -26,9 +26,9 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create task" do
-    assert_difference('Task.count') do
-      post category_tasks_path(@category), params: { 
-        task: { title: "New Task", description: "Test description" } 
+    assert_difference("Task.count") do
+      post category_tasks_path(@category), params: {
+        task: { title: "New Task", description: "Test description" }
       }
     end
     assert_redirected_to category_task_path(@category, Task.last)
@@ -45,14 +45,14 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update task" do
-    patch category_task_path(@category, @task), params: { 
-      task: { title: "Updated Task" } 
+    patch category_task_path(@category, @task), params: {
+      task: { title: "Updated Task" }
     }
     assert_redirected_to category_task_path(@category, @task)
   end
 
   test "should destroy task" do
-    assert_difference('Task.count', -1) do
+    assert_difference("Task.count", -1) do
       delete category_task_path(@category, @task)
     end
     assert_redirected_to tasks_path
