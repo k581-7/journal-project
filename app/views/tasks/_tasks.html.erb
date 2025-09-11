@@ -1,8 +1,12 @@
-<% @tasks.each do |task| %>
-    <tr>
-    <td><%= task.title %></td>
-    <td><%= link_to 'Show', category_task_path(@category, task) %></td>
-    <td><%= link_to 'Edit', edit_category_task_path(@category, task) %></td>
-    <td><%= button_to 'Delete', category_task_path(@category, task), method: :delete %> </td>
-    </tr>
+<% if defined?(tasks) && tasks.present? %>
+  <% tasks.each do |task| %>
+      <tr>
+      <td><%= task.title %></td>
+      <td><%= link_to 'Show', category_task_path(task.category, task) %></td>
+      <td><%= link_to 'Edit', edit_category_task_path(task.category, task) %></td>
+      <td><%= button_to 'Delete', category_task_path(task.category, task), method: :delete %> </td>
+      </tr>
+  <% end %>
+<% else %>
+  <p>No tasks in this category yet.</p>
 <% end %>

@@ -1,6 +1,18 @@
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
+require "bcrypt"
+require "devise/encryptor"
+
+class ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+end
+
+def encrypted_password(password)
+  Devise::Encryptor.digest(User, password)
+end
+
+
 
 module ActiveSupport
   class TestCase

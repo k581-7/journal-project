@@ -1,10 +1,12 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_category, except: [ :index, :today ]
-  before_action :set_task, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_category, except: [:index, :today], if: -> { params[:category_id].present? }
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
     @tasks = current_user.tasks
+    @todays_tasks = current_user.tasks.created_today
+    @task = Task.new
   end
 
   def today
@@ -15,21 +17,19 @@ class TasksController < ApplicationController
   end
 
   def new
-    @category = current_user.categories.find(params[:category_id])
     @task = @category.tasks.build
   end
 
   def create
-    @category = current_user.categories.find(params[:category_id])
     @task = @category.tasks.build(task_params)
     @task.user = current_user
-    # @tasks = @category.tasks
-
+    
     if @task.save
       redirect_to @category
     else
+      # Make sure you have the data needed for the categories/show template
       @tasks = @category.tasks
-      render "categories/show"
+      render "categories/show", status: :unprocessable_entity
     end
   end
 
@@ -38,15 +38,15 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to [ @category, @task ]
+      redirect_to [@category, @task]
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @task.destroy
-    redirect_to tasks_path
+    redirect_to category_path(@category)
   end
 
   private

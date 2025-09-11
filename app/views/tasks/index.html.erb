@@ -1,10 +1,21 @@
-<table>
-  <thead>
-    <tr>
-      <th>Tasks</th>
-      <th><%= link_to 'Create a Task', new_category_task_path %></th>
-    </tr>
-  </thead>
+<h1>All Tasks</h1>
+
+<div class="tasks-container">
+  <% if @tasks.any? %>
+    <% @tasks.group_by(&:category).each do |category, tasks| %>
+      <div class="category-section">
+        <h3><%= category.name %></h3>
+        <%= render 'tasks', tasks: tasks %>
+        <%= link_to 'New Task', new_category_task_path(category), class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No tasks yet.</p>
+    <p><%= link_to 'Create a category first', categories_path %> to start adding tasks.</p>
+  <% end %>
+</div>
+
+<%= link_to 'Categories', categories_path, class: 'btn btn-secondary' %>
 
   <tbody>
       <tr>
