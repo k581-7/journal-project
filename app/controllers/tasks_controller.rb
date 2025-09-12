@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_category, except: [:index, :today], if: -> { params[:category_id].present? }
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, except: [ :index, :today ], if: -> { params[:category_id].present? }
+  before_action :set_task, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @tasks = current_user.tasks
@@ -23,7 +23,7 @@ class TasksController < ApplicationController
   def create
     @task = @category.tasks.build(task_params)
     @task.user = current_user
-    
+
     if @task.save
       redirect_to @category
     else
@@ -38,7 +38,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to [@category, @task]
+      redirect_to [ @category, @task ]
     else
       render :edit, status: :unprocessable_entity
     end

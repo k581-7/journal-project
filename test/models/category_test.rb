@@ -19,7 +19,7 @@ class CategoryTest < ActiveSupport::TestCase
   test "destroying category destroys associated tasks" do
     category = categories(:one)
     task_count = category.tasks.count
-    
+
     assert_difference("Task.count", -task_count) do
       category.destroy
     end
