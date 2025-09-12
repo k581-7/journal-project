@@ -1,8 +1,27 @@
 <style>
 * {
-  text-align: center;
   font-family: 'Open Sans', sans-serif; 
-  color: #820f17
+  color: #820f17;
+}
+
+table {
+  margin: 0 auto;
+  text-align: center;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+th, td {
+  text-align: center;
+  padding-left: 85px;
+}
+
+h1 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
 }
 </style>
 
@@ -22,7 +41,7 @@
         <td><%= user.username %></td>
         <td><%= link_to 'Create a Task', new_category_path %></td>
         <td>
-          <%= link_to 'Update an Account', edit_user_registration_path %>
+          <%= link_to 'Update Account', edit_user_registration_path %>
           <% if user_signed_in? %>
             <%= button_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false } %>
           <% end %>
@@ -48,10 +67,10 @@
         <tr>
           <td><%= task.title %></td>
           <td><%= task.description %></td>
-          <td><%= task.due_date %></td>
+          <td><%= task.due_date == Date.current ? "!!TODAY!!" : task.due_date %></td>
           <td>
             <% if task.category.present? %>
-              <%= link_to 'Show', category_task_path(task.category, task) %> 
+              <%= link_to 'View', category_task_path(task.category, task) %> 
               <%= link_to 'Edit', edit_category_task_path(task.category, task) %> 
               <%= button_to 'Delete', category_task_path(task.category, task), method: :delete, data: { confirm: 'Are you sure?' } %>
             <% else %>

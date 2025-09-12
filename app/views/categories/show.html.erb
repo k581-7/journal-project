@@ -4,13 +4,32 @@
   font-family: 'Open Sans', sans-serif; 
   color: #820f17
 }
+table {
+  margin: 0 auto;
+  text-align: center;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+th, td {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  font-weight: bold;
+}
 </style>
 
 
 <table>
   <thead>
     <tr>
-      <th>Categories</th>
+      <th>Category</th>
     </tr>
   </thead>
 
@@ -21,7 +40,7 @@
   </tbody>
 </table>
 
-<h1>New Task</h1>
+<p>Create a Task</p>
 <%= form_with model: [@category, @task], local: true do |form| %>
 
 <p>
@@ -42,12 +61,14 @@
 </p>
 <% end %>
 
+<h2>Tasks</h2>
+
   <tbody>
       <tr>
         <% @category.tasks.each do |task| %>
         <tr>
         <td><%= task.title %></td>
-        <td><%= link_to 'Show', category_task_path(@category, task) %></td>
+        <td><%= link_to 'View', category_task_path(@category, task) %></td>
         <td><%= link_to 'Edit', edit_category_task_path(@category, task) %></td>
         <td><%= button_to 'Delete', category_task_path(@category, task), method: :delete %> </td>
         </tr>

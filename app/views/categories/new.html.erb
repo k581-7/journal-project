@@ -4,6 +4,24 @@
   font-family: 'Open Sans', sans-serif; 
   color: #820f17
 }
+table {
+  margin: 0 auto;
+  text-align: center;
+  border-collapse: collapse;
+  width: 20%;
+}
+
+th, td {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
 </style>
 
 <h1>New Category</h1>
@@ -19,7 +37,7 @@
 </p>
 <% end %>
 
-<h2>Existing Categories</h2>
+<h2>Choose Category</h2>
 <table>
   <tbody>
     <%= render "categories", categories: @categories %>
