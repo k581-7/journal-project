@@ -1,3 +1,12 @@
+<style>
+* {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif; 
+  color: #820f17
+}
+</style>
+
+
 <table>
   <thead>
     <tr>
@@ -42,8 +51,8 @@
           <td><%= task.due_date %></td>
           <td>
             <% if task.category.present? %>
-              <%= link_to 'Show', category_task_path(task.category, task) %> |
-              <%= link_to 'Edit', edit_category_task_path(task.category, task) %> |
+              <%= link_to 'Show', category_task_path(task.category, task) %> 
+              <%= link_to 'Edit', edit_category_task_path(task.category, task) %> 
               <%= button_to 'Delete', category_task_path(task.category, task), method: :delete, data: { confirm: 'Are you sure?' } %>
             <% else %>
               No category assigned
